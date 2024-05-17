@@ -1,0 +1,9 @@
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "street": "123 Main St",
+  "city": "Los Angeles",
+  "region": "California",
+  "postcode": "90001",
+  "telephone": "1234567890"
+}
