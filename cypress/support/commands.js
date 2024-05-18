@@ -25,11 +25,24 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 Cypress.Commands.add('addProductToCart', (productName) => {
-    cy.visit('/');
+    //cy.visit('/');
     cy.get(':nth-child(5) > .product-item-info > .product-item-photo > .product-image-container > .product-image-wrapper > .product-image-photo').click();
     cy.get('#product-addtocart-button').click();
-    cy.get('.showcart').click();
-    cy.get('.block-content > :nth-child(4)').click();
+    cy.wait(3000); // Wait for 2 seconds
+    cy.get('.showcart').scrollIntoView().click();
+  });
+
+Cypress.Commands.add('viewCart', (productName) => {
+    //cy.get(':nth-child(7) > .secondary > .action > span').click();
+    cy.get('span[data-bind="i18n: \'View and Edit Cart\'"]')
+      .should('be.visible')
+      .click({ force: true });
+    
+  });
+
+Cypress.Commands.add('proceedToCheckout', (productName) => {
+    cy.get('.checkout-methods-items > :nth-child(1) > .action > span').click();
+    // cy.get('.block-content > :nth-child(4)').click();
   });
   
   
