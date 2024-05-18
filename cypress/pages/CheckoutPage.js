@@ -16,8 +16,9 @@ class CheckoutPage {
     }
   
     submit() {
-        cy.get('.button > span').click();
-        cy.get('.payment-method-content > :nth-child(4) > div.primary > .action > span').click()
+      cy.get(':nth-child(1) > :nth-child(1) > .radio').click();
+      cy.get('.button').click();
+      cy.get('.payment-method-content > :nth-child(4) > div.primary > .action > span').click()
     }
   }
   

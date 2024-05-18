@@ -1,30 +1,4 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-
-Cypress.Commands.add('addProductToCart', (productName) => {
+Cypress.Commands.add('addProductToCart', () => {
     //cy.visit('/');
     cy.get(':nth-child(5) > .product-item-info > .product-item-photo > .product-image-container > .product-image-wrapper > .product-image-photo').click();
     cy.get('#product-addtocart-button').click();
@@ -32,7 +6,7 @@ Cypress.Commands.add('addProductToCart', (productName) => {
     cy.get('.showcart').scrollIntoView().click();
   });
 
-Cypress.Commands.add('viewCart', (productName) => {
+Cypress.Commands.add('viewCart', () => {
     console.log("I am here...")
     //cy.get(':nth-child(7) > .secondary > .action > span').click();
     cy.get('span[data-bind="i18n: \'View and Edit Cart\'"]')
@@ -41,9 +15,16 @@ Cypress.Commands.add('viewCart', (productName) => {
     
   });
 
-Cypress.Commands.add('proceedToCheckout', (productName) => {
+Cypress.Commands.add('proceedToCheckout', () => {
     cy.get('.checkout-methods-items > :nth-child(1) > .action > span').click();
-    // cy.get('.block-content > :nth-child(4)').click();
   });
-  
-  
+
+Cypress.Commands.add('elemContains', (text,selector ) => {
+  cy.wait(3000)
+  if (selector != undefined) {
+    cy.get(selector).contains(text).should('be.visible');
+  } else {
+    cy.contains(text);
+  }
+});
+
