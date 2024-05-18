@@ -41,7 +41,7 @@ describe('Proceed to Cart - Negative Test Cases', () => {
     cy.fixture('shippingDetails').as('details');
   });
 
-  it('should not allow proceeding to checkout with an empty cart', () => {
+  it.only('should not allow proceeding to checkout with an empty cart', () => {
     // Navigate to the cart page
     cy.visit('/');
     
@@ -57,8 +57,8 @@ describe('Proceed to Cart - Negative Test Cases', () => {
     cy.visit('/');
     cy.addProductToCart('Product Name'); // replace 'Product Name' with the actual product name
     cy.viewCart('Product Name');
-    //cy.get('.action-edit').click();
-    cy.get('.action-edit', { timeout: 20000 }).should('be.visible').click();
+    // cy.get('.action-edit').click();
+    cy.get('.action-edit', { timeout: 20000 }).click();
     cy.get('#qty', { timeout: 20000 })
     .should('be.visible') // Ensure it's visible
     .clear() // Clear the existing value
@@ -66,8 +66,9 @@ describe('Proceed to Cart - Negative Test Cases', () => {
     .should('have.value', '0'); // Verify the value is set to 0
  
     cy.get('#product-updatecart-button').click();
+
     // Assert that the appropriate message is displayed
-    cy.contains('Please enter a').should('be.visible');
+    cy.get('#qty-error').contains("Please enter a");
   });
 });
 

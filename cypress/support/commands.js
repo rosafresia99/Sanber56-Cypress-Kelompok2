@@ -33,6 +33,7 @@ Cypress.Commands.add('addProductToCart', (productName) => {
   });
 
 Cypress.Commands.add('viewCart', (productName) => {
+    console.log("I am here...")
     //cy.get(':nth-child(7) > .secondary > .action > span').click();
     cy.get('span[data-bind="i18n: \'View and Edit Cart\'"]')
       .should('be.visible')
