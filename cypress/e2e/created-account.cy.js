@@ -10,7 +10,7 @@ describe('Create An Account - Positive TC', () => {
         cy.contains('Create an Account').click();
         cy.url().should('include', '/customer/account/create/');
 
-        cy.contains('#firstname').type(this.userData.firstname);
+        cy.get('#firstname').type(this.userData.firstname);
         cy.get('#lastname').type(this.userData.lastname);
         cy.get('#email_address').type(this.userData.email_address);
         cy.get('#password').type(this.userData.password);
