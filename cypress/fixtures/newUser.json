@@ -2,6 +2,8 @@
     "firstname" : "Rizky",
     "lastname" : "Pakai",
     "email_address" : "rizkypakai@email.com",
+    "email_addressNew" : "rizkypakai@gmail.com",
     "password" : "Rizky12345",
+    "passwordNew" : "Rizky123456",
     "password-confirmation" : "Rizky12345"
 }

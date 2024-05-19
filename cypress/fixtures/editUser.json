@@ -1,0 +1,13 @@
+{
+    "firstname" : "Rizky",
+    "lastname" : "Pakai New",
+    "email_addressNew" : "rizkypakai@gmail.com",
+    "passwordOld" : "Rizky12345",
+    "passwordNew" : "Rizky123456",
+    "passwordConfirmationNew" : "Rizky123456",
+    "wrongpassword" : "67890-=",
+    "minpassword" : "1",
+    "passwordnewest" : "1234567890",
+    "invalidconfirmation" : "qwertyuiop"
+
+}
