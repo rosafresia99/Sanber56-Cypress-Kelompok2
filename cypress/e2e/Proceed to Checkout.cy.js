@@ -1,18 +1,6 @@
-// describe('template spec', () => {
-//   it('passes', () => {
-//     cy.visit('https://example.cypress.io')
-//   })
-// })
-
 import CheckoutPage from '../pages/CheckoutPage';
 
-// support/index.js or at the top of your test file
-Cypress.on('uncaught:exception', (err, runnable) => {
-  // Return false to prevent the error from failing the test
-  return false;
-});
-
-describe('Proceed to Cart - Positive Test Cases', () => {
+describe('Magento Checkout without Login', () => {
   const checkoutPage = new CheckoutPage();
 
   beforeEach(() => {
@@ -21,15 +9,14 @@ describe('Proceed to Cart - Positive Test Cases', () => {
 
   it('proceeds through checkout process without login', function() {
     cy.visit('/');
-    cy.addProductToCart('Product Name'); // replace 'Product Name' with the actual product name
-    cy.viewCart('Product Name');
-    cy.proceedToCheckout('Product Name');
+    cy.addProductToCart(); // replace 'Product Name' with the actual product name
+    cy.viewCart();
+    cy.proceedToCheckout();
     checkoutPage.visit();
     checkoutPage.fillShippingDetails(this.details);
     checkoutPage.submit();
-    
     // Add assertions to verify order confirmation
-    cy.contains('Thank you for your purchase').should('be.visible');
+    cy.elemContains('Thank you for your purchase');
   });
 });
 
@@ -41,24 +28,24 @@ describe('Proceed to Cart - Negative Test Cases', () => {
     cy.fixture('shippingDetails').as('details');
   });
 
-  it.only('should not allow proceeding to checkout with an empty cart', () => {
+  it('should not allow proceeding to checkout with an empty cart', () => {
     // Navigate to the cart page
     cy.visit('/');
     
     // Attempt to proceed to checkout
-    cy.viewCart('Product Name');
+    cy.get('.showcart').scrollIntoView().click();
     
     // Assert that the appropriate message is displayed
-    cy.contains('You have no items in your shopping cart.').should('be.visible');
+    cy.elemContains('You have no items in your shopping cart.')
   });
   
-  it ('should not allow proceeding to checkout with invalid item quantity', () => {
+  it('should not allow proceeding to checkout with invalid item quantity', () => {
     // Add an item with invalid quantity to the cart
     cy.visit('/');
-    cy.addProductToCart('Product Name'); // replace 'Product Name' with the actual product name
-    cy.viewCart('Product Name');
-    // cy.get('.action-edit').click();
-    cy.get('.action-edit', { timeout: 20000 }).click();
+    cy.addProductToCart();
+    cy.viewCart();
+    cy.get('.action-edit').click();
+    cy.wait(3000)
     cy.get('#qty', { timeout: 20000 })
     .should('be.visible') // Ensure it's visible
     .clear() // Clear the existing value
@@ -66,9 +53,7 @@ describe('Proceed to Cart - Negative Test Cases', () => {
     .should('have.value', '0'); // Verify the value is set to 0
  
     cy.get('#product-updatecart-button').click();
-
-    // Assert that the appropriate message is displayed
-    cy.get('#qty-error').contains("Please enter a");
+    cy.elemContains('Please enter a','#qty-error')
   });
 });
 
