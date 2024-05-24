@@ -12,10 +12,9 @@ describe('Pilih Produk', () => {
         cy.get('#option-label-color-93-item-50').click();
         cy.get('#qty').type("2");
 
+        cy.screenshot('before-submit-pilih-produk');
         cy.get('#product-addtocart-button').click();
-        cy.screenshot('before-submit');
 
-        cy.get('button[title="Create an Account"]').click();
-        cy.screenshot('after-submit');
+        cy.screenshot('after-submit-pilih-produk');
     });
 });
