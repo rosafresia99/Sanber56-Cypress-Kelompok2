@@ -1,4 +1,4 @@
-describe('Pilih Produk', () => {
+describe('Update Produk pada Shopping Chart', () => {
 
     it('Pilih Produk Scenario', function() {
         cy.visit('https://magento.softwaretestingboard.com/');

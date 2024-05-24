@@ -1,4 +1,4 @@
-describe('Pilih Produk', () => {
+describe('Pilih Produk dari Arif', () => {
 
     it('Pilih Produk Positif Scenario', function() {
         cy.visit('https://magento.softwaretestingboard.com/');
