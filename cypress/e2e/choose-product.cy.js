@@ -13,7 +13,8 @@ describe('Pilih Produk dari Arif', () => {
         
         cy.get('#option-label-size-143-item-166').click();
         cy.get('#option-label-color-93-item-50').click();
-        cy.get('#qty').type("2");
+        cy.get('#qty').clear();
+        cy.get('#qty').type("5");
         
         cy.screenshot('before-submit-pilih-produk');
         cy.get('#product-addtocart-button').click();
@@ -44,7 +45,7 @@ describe('Pilih Produk dari Arif', () => {
         cy.get('#option-label-color-93-item-60').click();
 
         cy.get('#qty').clear();
-        cy.get('#qty').type("2");
+        cy.get('#qty').type("3");
         
         cy.screenshot('before-submit-pilih-produk');
         cy.get('#product-addtocart-button').click();
